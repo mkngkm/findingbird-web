@@ -11,8 +11,8 @@ const globalFont = localFont({
 })
 
 export const metadata: Metadata = {
-  title: "Woo-Ah-HANA",
-  description: "Digital Hanaro Final Team Project",
+  title: "Findingbird",
+  description: "Findingbird",
 };
 
 export default function RootLayout({

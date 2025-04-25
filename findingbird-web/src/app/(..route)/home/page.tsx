@@ -1,4 +1,3 @@
-
 import Map from "@/app/ui/components/map/map"
 
 
