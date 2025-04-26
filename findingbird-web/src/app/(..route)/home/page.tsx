@@ -6,12 +6,11 @@ export default async function Home(){
 
 
   return(
-    <main>
-      <div className="p-5 grid grid-cols-1 gap-3">
-        {/* TODO: 지도 로딩 중일 경우, 렌딩 페이지 작업 */}
-        <Map/>
+    
+      
+      <div className="p-5 grid grid-cols-1 gap-3 min-h-screen">
+        <Map />
       </div>
-    </main>
   )
 }
 
