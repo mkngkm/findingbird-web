@@ -1,45 +1,40 @@
 "use client";
 
 import Script from "next/script";
-import { useCallback, useRef } from "react";
+import { useEffect, useRef } from "react";
 
-export type NaverMap = naver.maps.Map;
+export default function Map({ lat, lng }: { lat: number; lng: number }) {
+  const mapRef = useRef<naver.maps.Map | null>(null);
 
-const mapId = "naver-map";
+  useEffect(() => {
+    if (lat !== 0 && lng !== 0 && typeof naver !== "undefined") {
+      const center = new naver.maps.LatLng(lat, lng);
 
-export default function Map() {
-  const mapRef = useRef<NaverMap | null>(null);
-
-  const initializeMap = useCallback(() => {
-    naver.maps.onJSContentLoaded = function () {
-      const defaultLat = 37.5665; // 서울 위도
-      const defaultLng = 126.9780; // 서울 경도
-
-      const mapOptions = {
-        center: new naver.maps.LatLng(defaultLat, defaultLng),
-        zoom: 13,
-        scaleControl: true,
-        mapDataControl: true,
-        logoControlOptions: {
-          position: naver.maps.Position.BOTTOM_LEFT,
-        },
-      };
-
-      const map = new naver.maps.Map(mapId, mapOptions);
-      mapRef.current = map;
-    };
-  }, []);
+      if (!mapRef.current) {
+        mapRef.current = new naver.maps.Map("map", {
+          center,
+          zoom: 13,
+          zoomControl: true,
+          mapTypeControl: true,
+          zoomControlOptions: {
+            position: naver.maps.Position.TOP_RIGHT,
+          },
+          mapDataControl: false,
+        });
+      } else {
+        mapRef.current.setCenter(center);
+      }
+    }
+  }, [lat, lng]);
 
   return (
     <>
       <Script
-        strategy="afterInteractive"
-        type="text/javascript"
         src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${process.env.NEXT_PUBLIC_MAP_CLIENT_ID}`}
+        strategy="afterInteractive"
         async={true}
-        onReady={initializeMap}
       />
-      <div id={mapId} className="aspect-video rounded-lg" />
+      <div id="map" className="aspect-video min-h-[300px] rounded-lg bg-gray-100" />
     </>
   );
 }
