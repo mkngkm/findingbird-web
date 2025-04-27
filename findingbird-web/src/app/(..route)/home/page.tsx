@@ -17,11 +17,10 @@ export default function Home() {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           });
-          console.log("위치 가져오기 성공", position.coords);
-
+          console.log("위치 가져오기 성공", position);
         },
-        () => {
-          console.warn("위치 가져오기 실패, 기본 위치 사용");
+        (error) => {
+          console.error('❌ 위치 가져오기 실패', error);
         }
       );
     }
@@ -29,7 +28,7 @@ export default function Home() {
 
   return (
     <div className="p-5 grid grid-cols-1 gap-3 min-h-screen">
-      <Map lat={center.lat} lng={center.lng} /> {/* 🔥 lat, lng 넘겨주기 */}
+      <Map lat={center.lat} lng={center.lng} />
     </div>
   );
 }
