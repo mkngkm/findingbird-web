@@ -58,7 +58,8 @@ export default function Map({ lat, lng }: { lat: number; lng: number }) {
         async={true}
         onLoad={() => setScriptLoaded(true)}
       />
-      <div id={mapId} className="aspect-video rounded-lg bg-gray-100" />
+      <div id={mapId} className="aspect-video rounded-lg bg-gray-100 relative" />
+      
     </>
   );
 }

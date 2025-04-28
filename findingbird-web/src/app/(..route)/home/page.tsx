@@ -27,8 +27,12 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="p-5 grid grid-cols-1 gap-3 min-h-screen">
-      <Map lat={center.lat} lng={center.lng} />
+    <div className="grid grid-cols-1 gap-3 min-h-screen">
+      <Map lat={center.lat} lng={center.lng}/>
+      <button className="absolute bottom-2 left-1/2 bg-black rounded-full shadow-md">
+        <span>button</span>
+      </button>
+      
     </div>
   );
 }

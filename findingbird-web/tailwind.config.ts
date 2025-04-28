@@ -12,8 +12,8 @@ export default {
     "./node_modules/@tremor/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    // transparent: "transparent",
-    // current: "currentColor",
+    transparent: "transparent",
+    current: "currentColor",
     extend: {
       keyframes: {
         "accordion-down": {
