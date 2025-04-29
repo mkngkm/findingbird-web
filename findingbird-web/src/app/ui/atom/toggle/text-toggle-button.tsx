@@ -29,7 +29,7 @@ export default function TextToggleButton({ text, disabled = false, onToggle }: T
       <div
         className={cn(
           "flex-1 text-center text-sm px-4 py-1 rounded-full cursor-pointer transition-all",
-          !active ? "bg-green-400 text-white" : "text-gray-400"
+          !active ? "bg-birdGreen400 text-white" : "text-gray-400"
         )}
         onClick={() => handleToggleChange(false)}
       >
@@ -40,7 +40,7 @@ export default function TextToggleButton({ text, disabled = false, onToggle }: T
       <div
         className={cn(
           "flex-1 text-center text-sm px-4 py-1 rounded-full cursor-pointer transition-all",
-          active ? "bg-green-400 text-white" : "text-gray-400"
+          active ? "bg-birdGreen400 text-white" : "text-gray-400"
         )}
         onClick={() => handleToggleChange(true)}
       >

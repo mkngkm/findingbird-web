@@ -106,7 +106,7 @@ export default function CalendarClient({ initialYear, initialMonth, initialDaily
               key={idx}
               onClick={() => handleSelectDate(day)}
               className={`aspect-square flex items-center justify-center rounded-full
-                ${record?.hasRecords ? "bg-blue-400 text-white" : "bg-gray-100 text-gray-500"}
+                ${record?.hasRecords ? "bg-birdGreen600 text-white" : "bg-gray-100 text-gray-500"}
                 hover:scale-110 transition-transform`}
             >
               {day}
