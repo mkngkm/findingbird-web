@@ -1,4 +1,3 @@
-import CalendarHeader from "@/app/ui/molecule/calendar/calendar-header";
 import CalendarServer from "@/app/ui/molecule/calendar/calendar-server";
 
 
@@ -22,9 +21,9 @@ export default async function RecordPage({
 
   return (
     <main>
-      <div className="h-full flex flex-col">
-      <CalendarHeader year={2025} month={4}/>
+      <div className="h-full flex flex-col justify-center">
         <div className="flex-1 overflow-y-auto p-5">
+       
           {hasAnyRecords ? (
             <CalendarServer year={year} month={month} dailyRecords={dailyRecords} />
           ) : (
