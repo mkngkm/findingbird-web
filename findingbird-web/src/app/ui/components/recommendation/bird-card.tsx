@@ -1,17 +1,19 @@
+// src/app/ui/components/recommendation/bird-card.tsx
 'use client';
-import React from 'react';
+import * as React from 'react';
 import { Bird } from './types';
 
-interface BirdCardProps {
+export interface BirdCardProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   bird: Bird;
-  onSelect: (bird: Bird) => void;
 }
 
-export default function BirdCard({ bird, onSelect }: BirdCardProps) {
-  return (
+const BirdCard = React.forwardRef<HTMLButtonElement, BirdCardProps>(
+  ({ bird, className = '', ...props }, ref) => (
     <button
-      onClick={() => onSelect(bird)}
-      className="flex flex-col bg-white rounded-lg shadow overflow-hidden mb-4 focus:outline-none"
+      ref={ref}
+      {...props}
+      className={`flex flex-col bg-white rounded-lg shadow overflow-hidden mb-4 focus:outline-none ${className}`}
     >
       <div className="h-40 bg-gray-200">
         <img
@@ -21,9 +23,16 @@ export default function BirdCard({ bird, onSelect }: BirdCardProps) {
         />
       </div>
       <div className="p-4">
-        <h3 className="text-lg font-semibold text-gray-800">{bird.commonName}</h3>
-        <p className="text-sm text-gray-500 italic">{bird.scientificName}</p>
+        <h3 className="text-lg font-semibold text-gray-800">
+          {bird.commonName}
+        </h3>
+        <p className="text-sm text-gray-500 italic">
+          {bird.scientificName}
+        </p>
       </div>
     </button>
-  );
-}
+  )
+);
+
+BirdCard.displayName = 'BirdCard';
+export default BirdCard;
