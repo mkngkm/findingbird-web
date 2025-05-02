@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import ReportList from '@/app/ui/molecule/birdstrike/report-list';
-import { Report } from '@/app/ui/molecule/birdstrike/types';
+import ReportList from '@/app/ui/components/birdstrike/report-list';
+import { Report } from '@/app/ui/components/birdstrike/types';
 
 // 샘플 데이터 (추후 API 연동)
 const dummyReports: Report[] = [
