@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Bird } from './types';
+import { Bird } from '../../../business/recommendation/types';
 
 interface BirdDetailDialogProps {
   bird: Bird | null;
