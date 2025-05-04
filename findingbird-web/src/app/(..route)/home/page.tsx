@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Map from "@/app/ui/components/map/map";
+import Link from "next/link";
 
 export default function Home() {
   const [center, setCenter] = useState<{ lat: number; lng: number }>({
@@ -29,9 +30,11 @@ export default function Home() {
   return (
     <div className="relative w-full h-screen overflow-hidden">
       <Map lat={center.lat} lng={center.lng} />
-      <button className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-birdGreen600 text-white font-semibold rounded-full px-6 py-3 shadow-lg">
-        ai 목표 생성
-      </button>
+      <Link href="/recommendation">
+        <button className="absolute bottom-16 left-1/2 transform -translate-x-1/2 bg-birdGreen600 text-white font-semibold rounded-full px-6 py-3 shadow-lg">
+          ai 목표 생성
+        </button>
+      </Link>
     </div>
   );
 }

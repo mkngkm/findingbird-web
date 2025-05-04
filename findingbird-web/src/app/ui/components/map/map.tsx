@@ -1,6 +1,5 @@
 "use client";
 
-import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
 
 export type NaverMap = naver.maps.Map;
@@ -11,14 +10,25 @@ const mapId = "naver-map";
 export default function Map({ lat, lng }: { lat: number; lng: number }) {
   const mapRef = useRef<NaverMap | null>(null);
   const markerRef = useRef<NaverMarker | null>(null);
-  const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [isMapReady, setIsMapReady] = useState(false);
+
+  // 네이버 맵 SDK 로딩 확인 (window.naver 존재 여부)
+  useEffect(() => {
+    const check = setInterval(() => {
+      if (typeof window !== "undefined" && window.naver?.maps) {
+        setIsMapReady(true);
+        clearInterval(check);
+      }
+    }, 100);
+    return () => clearInterval(check);
+  }, []);
 
   useEffect(() => {
-    if (!scriptLoaded || typeof naver === "undefined") return;
+    if (!isMapReady) return;
 
-    naver.maps.onJSContentLoaded = function () {
-      const position = new naver.maps.LatLng(lat, lng);
+    const position = new naver.maps.LatLng(lat, lng);
 
+    if (!mapRef.current) {
       mapRef.current = new naver.maps.Map(mapId, {
         center: position,
         zoom: 13,
@@ -33,29 +43,12 @@ export default function Map({ lat, lng }: { lat: number; lng: number }) {
         position,
         map: mapRef.current,
       });
-    };
-  }, [scriptLoaded]);
-
-  useEffect(() => {
-    if (!mapRef.current) return;
-    const position = new naver.maps.LatLng(lat, lng);
-
-    mapRef.current.setCenter(position);
-
-    if (markerRef.current) {
-      markerRef.current.setPosition(position);
+    } else {
+      mapRef.current.setCenter(position);
+      markerRef.current?.setPosition(position);
     }
-  }, [lat, lng]);
+  }, [isMapReady, lat, lng]);
 
-  return (
-    <>
-      <Script
-        strategy="afterInteractive"
-        src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${process.env.NEXT_PUBLIC_MAP_CLIENT_ID}`}
-        async
-        onLoad={() => setScriptLoaded(true)}
-      />
-      <div id={mapId} className="absolute inset-0 w-full h-full" />
-    </>
-  );
+  return <div id={mapId} className="absolute inset-0 w-full h-full z-0" />;
+
 }

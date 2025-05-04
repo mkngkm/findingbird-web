@@ -5,6 +5,7 @@ import { Dialog, DialogTrigger, DialogContent } from '@/app/ui/molecule/dialog/d
 import { Close as DialogClose } from '@radix-ui/react-dialog';
 import BirdCard from '@/app/ui/components/recommendation/bird-card';
 import { Bird } from '@/app/business/recommendation/types';
+import Header from '@/app/ui/components/header';
 
 const dummyBirds: Bird[] = [
   {
@@ -28,9 +29,7 @@ const dummyBirds: Bird[] = [
 export default function RecommendationPage() {
   return (
     <main className="min-h-screen bg-gray-100 p-5">
-      <header className="mb-6">
-        <h1 className="text-2xl font-semibold text-gray-800">AI가 추천한 목표</h1>
-      </header>
+      <Header title="AI 추천 목표" link="/home" />
       <section className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {dummyBirds.map((bird) => (
           <Dialog key={bird.id}>
