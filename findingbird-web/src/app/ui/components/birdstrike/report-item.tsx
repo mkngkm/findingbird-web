@@ -1,5 +1,5 @@
 import React from 'react';
-import { Report } from './types';
+import { Report } from '../../../business/birdstrike/types';
 
 interface ReportItemProps {
   report: Report;
