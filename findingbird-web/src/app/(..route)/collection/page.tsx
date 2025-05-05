@@ -1,8 +1,8 @@
 'use client';
 import React, { useState } from 'react';
-import BirdCard from '@/app/ui/components/collection/bird-card';
-import BirdDetailDialog from '@/app/ui/components/collection/bird-detail-dialog';
-import { Bird } from '@/app/ui/components/collection/types';
+import BirdCard from '@/app/ui/components/bird/bird-card';
+import BirdDetailDialog from '@/app/ui/components/bird/bird-detail-dialog';
+import { Bird } from '@/app/ui/components/bird/types';
 
 const dummyBirds: Bird[] = [
     { id: 1, imageUrl: '/images/birds/large-billed-crow.jpg', commonName: '큰부리까마귀', scientificName: 'Corvus macrorhynchos', morphology: '몸길이 약 55cm, 짙은 검은색 깃털과 크고 강한 부리가 특징입니다.', ecology: '숲과 농경지 등 다양한 서식지에서 잡식성으로 생활합니다.' },
