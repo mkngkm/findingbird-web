@@ -1,4 +1,3 @@
-// src/app/ui/components/recommendation/bird-card.tsx
 'use client';
 import * as React from 'react';
 import { Bird } from '../../../business/recommendation/types';
@@ -15,6 +14,7 @@ const BirdCard = React.forwardRef<HTMLButtonElement, BirdCardProps>(
       {...props}
       className={`flex flex-col bg-white rounded-lg shadow overflow-hidden mb-4 focus:outline-none ${className}`}
     >
+      {/* 이미지 영역 */}
       <div className="h-40 bg-gray-200">
         <img
           src={bird.imageUrl}
@@ -22,6 +22,7 @@ const BirdCard = React.forwardRef<HTMLButtonElement, BirdCardProps>(
           className="object-cover w-full h-full"
         />
       </div>
+      {/* 텍스트 영역 */}
       <div className="p-4">
         <h3 className="text-lg font-semibold text-gray-800">
           {bird.commonName}

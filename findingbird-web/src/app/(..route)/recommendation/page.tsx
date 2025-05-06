@@ -3,9 +3,8 @@
 import React from 'react';
 import { Dialog, DialogTrigger, DialogContent } from '@/app/ui/molecule/dialog/dialog';
 import { Close as DialogClose } from '@radix-ui/react-dialog';
-import BirdCard from '@/app/ui/components/recommendation/bird-card';
-import { Bird } from '@/app/business/recommendation/types';
-import Header from '@/app/ui/components/header';
+import BirdCard from '@/app/ui/components/bird/bird-card';
+import { Bird } from '@/app/ui/components/bird/types';
 
 const dummyBirds: Bird[] = [
   {
