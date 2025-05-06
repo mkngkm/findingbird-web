@@ -28,9 +28,7 @@ const dummyBirds: Bird[] = [
 export default function RecommendationPage() {
   return (
     <main className="min-h-screen bg-gray-100 p-5">
-      <header className="mb-6">
-        <h1 className="text-2xl font-semibold text-gray-800">AI가 추천한 목표</h1>
-      </header>
+      <Header title="AI 추천 목표" link="/home" />
       <section className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {dummyBirds.map((bird) => (
           <Dialog key={bird.id}>

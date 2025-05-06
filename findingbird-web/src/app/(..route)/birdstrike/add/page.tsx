@@ -1,10 +1,10 @@
 'use client';
 
 import Header from "@/app/ui/components/header";
-import RecordAddForm from "@/app/ui/components/record/record-add-form";
+import RecordAddForm from "@/app/ui/components/birdstrike/birdstrike-add-form";
 
 
-export default function RecordAddPage() {
+export default function BirdstrikeAddPage() {
   
 
   return (

@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import { Bird } from './types';
+import { Bird } from '../../../business/recommendation/types';
 
 export interface BirdCardProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
