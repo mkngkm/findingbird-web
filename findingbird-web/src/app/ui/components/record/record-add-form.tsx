@@ -3,9 +3,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Form from '../../molecule/form/form-index';
+import { createBirdRecord } from '@/app/business/record/record.service';
 
 export default function RecordAddForm() {
   const router = useRouter();
+
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [name, setName] = useState('');
   const [coordinate, setCoordinate] = useState('');
@@ -13,25 +15,6 @@ export default function RecordAddForm() {
   const [color, setColor] = useState('');
   const [locationDescription, setLocationDescription] = useState('');
   const [isSuggested, setIsSuggested] = useState(false);
-
-  async function createBirdRecord(prevState: any, formData: FormData) {
-    try {
-      console.log('폼 제출됨:', Object.fromEntries(formData.entries()));
-      return {
-        isSuccess: true,
-        isFailure: false,
-        message: null,
-        validationError: {},
-      };
-    } catch (err) {
-      return {
-        isSuccess: false,
-        isFailure: true,
-        message: '오류가 발생했습니다.',
-        validationError: {},
-      };
-    }
-  }
 
   return (
     <main>
@@ -44,6 +27,13 @@ export default function RecordAddForm() {
           if (imageFile) {
             formData.append('image', imageFile);
           }
+          formData.set('name', name || '');
+          formData.set('coordinate', coordinate);
+          formData.set('size', size);
+          formData.set('color', color);
+          formData.set('locationDescription', locationDescription);
+          formData.set('isSuggested', isSuggested ? 'on' : '');
+
           return await createBirdRecord(prevState, formData);
         }}
         failMessageControl="alert"
@@ -53,8 +43,6 @@ export default function RecordAddForm() {
         }}
       >
         <div className="flex flex-col gap-5 p-4">
-        
-
           <Form.TextInput
             id="name"
             label="새 이름"
@@ -65,9 +53,9 @@ export default function RecordAddForm() {
 
           <Form.TextInput
             id="coordinate"
-            label="좌표"
+            label="자치구"
             required
-            placeholder="위도,경도 형식"
+            placeholder="예: 서울특별시 강남구"
             value={coordinate}
             onValueChange={setCoordinate}
           />

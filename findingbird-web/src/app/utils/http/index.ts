@@ -1,39 +1,50 @@
-// utils/http/auth-instance.ts
-import axios from 'axios';
-import { getAccessToken } from '../auth/token';
+// utils/http/instance.ts
+import axios, { AxiosInstance } from 'axios';
+import { cookies } from 'next/headers';
+import Cookies from 'js-cookie';
 import { refreshAccessToken } from '../auth/refresh';
 
+export const createHttpInstance = (isServer: boolean): AxiosInstance => {
+  const instance = axios.create({
+    withCredentials: true,
+  });
 
-export const authInstance = axios.create({
-  withCredentials: true,
-});
+  instance.interceptors.request.use((config) => {
+    const token = isServer
+      ? cookies().get('token')?.value
+      : Cookies.get('token');
 
-authInstance.interceptors.request.use((config) => {
-  const token = getAccessToken();
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
-
-authInstance.interceptors.response.use(
-  (res) => res,
-  async (error) => {
-    const originalRequest = error.config;
-
-    if (error.response?.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
-
-      const newAccessToken = await refreshAccessToken();
-      if (newAccessToken) {
-        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-        return authInstance(originalRequest);
-      } else {
-        window.location.href = '/auth/login';
-        return Promise.reject(error);
-      }
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
 
-    return Promise.reject(error);
-  }
-);
+    //config.headers['Content-Type'] = 'application/json';
+    return config;
+  });
+
+  instance.interceptors.response.use(
+    (res) => res,
+    async (error) => {
+      const originalRequest = error.config;
+      if (error.response?.status === 401 && !originalRequest._retry && !isServer) {
+        originalRequest._retry = true;
+
+        const newAccessToken = await refreshAccessToken();
+        if (newAccessToken) {
+          Cookies.set('token', newAccessToken);
+          originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+          return instance(originalRequest);
+        }
+
+        window.location.href = '/auth/login';
+      }
+      return Promise.reject(error);
+    }
+  );
+
+  return instance;
+};
+
+// Usage example:
+// import { createHttpInstance } from './instance';
+// const instance = createHttpInstance(typeof window === 'undefined');
