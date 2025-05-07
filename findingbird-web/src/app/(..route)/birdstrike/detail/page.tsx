@@ -18,9 +18,9 @@ type BirdStrikeDetail = {
 
 const dummy: BirdStrikeDetail = {
   id: 1,
-  title: '도심에서 한미 물총새 충돌 목격',
+  title: '도심에서 물총새 충돌 목격',
   createdAt: '2025-04-10',
-  authorName: '홍길동',               
+  authorName: '쇠딱따구리3487',               
   birdCount: 2,
   collisionSiteType: '고층 건물 유리창',
   mitigationApplied: false,
