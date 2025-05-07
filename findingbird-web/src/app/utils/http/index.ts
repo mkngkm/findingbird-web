@@ -1,35 +1,39 @@
-import axios, { AxiosResponse } from "axios";
-// import { cookies } from "next/headers"; // 👈 나중에 필요할 때 주석 해제하세요
+// utils/http/auth-instance.ts
+import axios from 'axios';
+import { getAccessToken } from '../auth/token';
+import { refreshAccessToken } from '../auth/refresh';
 
-export interface APIResponseType<T> {
-  isSuccess: boolean;
-  isFailure: boolean;
-  data?: T;
-}
 
-export const instance = axios.create({
+export const authInstance = axios.create({
   withCredentials: true,
 });
 
-instance.interceptors.response.use((response: AxiosResponse) => {
-  return response;
+authInstance.interceptors.request.use((config) => {
+  const token = getAccessToken();
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
 
-instance.interceptors.request.use(
-  function (config) {
-    // 🔒 로그인 및 쿠키 설정 후 아래 코드 사용하세요
-    // const token = cookies().get("token")?.value;
-    // if (token) {
-    //   config.headers.Authorization = `Bearer ${token}`;
-    //   config.headers["Content-Type"] = "application/json";
-    // }
+authInstance.interceptors.response.use(
+  (res) => res,
+  async (error) => {
+    const originalRequest = error.config;
 
-    // 👇 기본 Content-Type만 설정해두기
-    config.headers["Content-Type"] = "application/json";
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
 
-    return config;
-  },
-  function (error) {
+      const newAccessToken = await refreshAccessToken();
+      if (newAccessToken) {
+        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+        return authInstance(originalRequest);
+      } else {
+        window.location.href = '/auth/login';
+        return Promise.reject(error);
+      }
+    }
+
     return Promise.reject(error);
   }
 );
