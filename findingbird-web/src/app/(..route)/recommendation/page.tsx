@@ -5,6 +5,8 @@ import { Dialog, DialogTrigger, DialogContent } from '@/app/ui/molecule/dialog/d
 import { Close as DialogClose } from '@radix-ui/react-dialog';
 import BirdCard from '@/app/ui/components/bird/bird-card';
 import { Bird } from '@/app/ui/components/bird/types';
+import Header from '@/app/ui/components/header';
+
 
 const dummyBirds: Bird[] = [
   {
