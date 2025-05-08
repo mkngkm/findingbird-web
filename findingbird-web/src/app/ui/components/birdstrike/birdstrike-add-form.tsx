@@ -21,8 +21,10 @@ export default function BirdstrikeAddForm() {
   const [description, setDescription] = useState('');
 
   return (
-    <main className="min-h-screen bg-gray-100 p-5">
-      
+    <main>
+      <div className="text-center font-semibold px-5 py-1 text-birdGreen400 mb-2 leading-tight">
+        조류 충돌 현장을 발견하셨나요?
+      </div>
       <Form
         id="birdstrike-report-post"
         action={async (prevState, formData) => {
@@ -78,8 +80,7 @@ export default function BirdstrikeAddForm() {
               id="mitigationApplied"
               checked={mitigationApplied}
               onChange={(e) => setMitigationApplied(e.target.checked)}
-              className="w-4 h-4"
-            />
+              className="w-4 h-4 text-birdGreen400"/>
             <label htmlFor="mitigationApplied" className="text-sm">
               저감 조치 적용 여부
             </label>
