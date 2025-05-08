@@ -133,13 +133,13 @@ export default function CalendarClient() {
           selectedRecords.length > 0 ? (
             <RecordListItem records={selectedRecords} />
           ) : (
-            <div className="text-center text-gray-400 mt-4">해당 날짜에 기록이 없습니다.</div>
+            <div className="text-center text-gray-400 mt-4">해당 날짜에 기록이 없습니다</div>
           )
         ) : (
           selectedGoals.length > 0 ? (
             <GoalListItem goals={selectedGoals} />
           ) : (
-            <div className="text-center text-gray-400 mt-4">해당 날짜에 목표가 없습니다.</div>
+            <div className="text-center text-gray-400 mt-4">해당 날짜에 목표가 없습니다</div>
           )
         )}
       </div>
