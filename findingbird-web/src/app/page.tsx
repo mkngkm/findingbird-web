@@ -1,20 +1,19 @@
-'use client';
+
 
 import { useEffect } from 'react';
 import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import LoginForm from './ui/components/auth/login-form';
 import Image from 'next/image';
+import { cookies } from 'next/headers';
 
 export default function RootPage() {
-  const router = useRouter();
+  const token = cookies().get('accessToken')?.value;
 
-  useEffect(() => {
-    const token = Cookies.get('token');
-    if (token) {
-      router.replace('/home');
-    }
-  }, [router]);
+  if (token) {
+    // ✅ 로그인 되어있으면 /home으로 보냄
+    redirect('/home');
+  }
 
   return (
     <div className='px-10 mb-10 flex flex-col items-center'>
