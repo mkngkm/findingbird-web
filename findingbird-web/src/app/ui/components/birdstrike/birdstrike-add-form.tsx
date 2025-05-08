@@ -22,10 +22,7 @@ export default function BirdstrikeAddForm() {
 
   return (
     <main className="min-h-screen bg-gray-100 p-5">
-      <header className="text-center font-semibold text-2xl text-birdGreen400 mb-6">
-        조류 충돌 신고하기
-      </header>
-
+      
       <Form
         id="birdstrike-report-post"
         action={async (prevState, formData) => {
@@ -61,7 +58,7 @@ export default function BirdstrikeAddForm() {
             id="birdCount"
             label="개체 수"
             required
-            placeholder="충돌한 새 개체 수"
+            placeholder="충돌한 새 개체 수를 입력하세요"
             value={birdCount}
             onValueChange={setBirdCount}
           />
@@ -92,7 +89,7 @@ export default function BirdstrikeAddForm() {
             id="speciesInfo"
             label="생물종 정보"
             required
-            placeholder="예: 까치 (Pica pica)"
+            placeholder="예: 까치"
             value={speciesInfo}
             onValueChange={setSpeciesInfo}
           />
@@ -101,7 +98,7 @@ export default function BirdstrikeAddForm() {
             id="observationLocation"
             label="관찰 위치"
             required
-            placeholder="발견 위치를 입력하세요"
+            placeholder="예: 초등학교 유리창 앞 화단"
             value={observationLocation}
             onValueChange={setObservationLocation}
           />
@@ -110,7 +107,7 @@ export default function BirdstrikeAddForm() {
             id="description"
             label="상세 설명"
             required
-            placeholder="관찰 내용을 상세히 작성하세요"
+            placeholder="예: 충돌 흔적 있음, 사체 존재 등. 새 이름을 모를 경우 외관을 상세히 기입해 주세요."
             value={description}
             onValueChange={setDescription}
           />
