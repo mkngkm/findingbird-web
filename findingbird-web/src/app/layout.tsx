@@ -27,7 +27,7 @@ export default function RootLayout({
       <body className={cn(globalFont.variable, 'font-pretendard')}>
         <Script
           strategy="beforeInteractive"
-          src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${process.env.NEXT_PUBLIC_MAP_CLIENT_ID}`}
+          src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${process.env.NEXT_PUBLIC_MAP_CLIENT_ID}&submodules=geocoder`}
         />
         <div className="pb-14">{children}</div>
         <TabBarWrapper /> {/* ✅ 클라이언트에서 조건 렌더링 */}

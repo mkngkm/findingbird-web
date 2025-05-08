@@ -1,8 +1,7 @@
 // ✅ 조류 충돌 상세 페이지 (서버 컴포넌트)
 import { fetchBirdstrikeDetail } from '@/app/business/birdstrike/\bbirdstrike.service';
 import Header from '@/app/ui/components/header';
-import Link from 'next/link';
-import { FaPlus } from 'react-icons/fa6';
+
 
 export default async function BirdStrikeDetailPage({ searchParams }: { searchParams: { id?: string } }) {
   const id = searchParams.id;
