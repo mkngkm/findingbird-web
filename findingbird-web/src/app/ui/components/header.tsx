@@ -12,7 +12,7 @@ interface HeaderProps {
 
 export default function Header({ title, link }: HeaderProps) {
   return (
-    <div className="relative p-5 h-14 bg-white flex items-center text-xl gap-2 shadow">
+    <div className="relative p-5 h-14 flex items-center text-xl gap-2 shadow">
       {/* 백버튼: 좌측에 절대 위치 */}
       {link && (
         <Link

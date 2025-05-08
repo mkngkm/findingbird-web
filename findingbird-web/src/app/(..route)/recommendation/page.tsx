@@ -15,7 +15,7 @@ export default async function RecommendationPage({
   const goals = await fetchTodayGoals();
 
   return (
-    <main className="min-h-screen bg-gray-100 p-5 relative">
+    <main className="min-h-screen bg-gray-100 flex flex-col">
       <Header title="AI 추천 목표" link="/home" />
 
       <section className="grid grid-cols-1 sm:grid-cols-2 gap-4">
