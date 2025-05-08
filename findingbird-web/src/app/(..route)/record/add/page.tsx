@@ -10,7 +10,7 @@ export default function RecordAddPage() {
 
   return (
     <div className="h-full flex flex-col justify-center">
-      <Header title="관찰 기록 추가" link="/record" />
+      <Header title="관찰 기록 추가하기" link="/record" />
       <div className="px-5 mb-10 mt-5">
         {/* ✅ prop으로 넘기기 */}
         <RecordAddForm recommendationId={recommendationId} />
