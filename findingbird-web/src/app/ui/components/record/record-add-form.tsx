@@ -57,7 +57,8 @@ export default function RecordAddForm({ recommendationId }: RecordAddFormProps) 
             id="district"
             label="자치구"
             required
-            placeholder="예: 서울특별시 강남구"
+            placeholder="예: 강남구"
+            //placeholder="예: 서울특별시 강남구"
             value={district}
             onValueChange={setDistrict}
           />
