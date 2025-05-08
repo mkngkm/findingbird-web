@@ -61,20 +61,40 @@ export type CreateGoalResponse = {
     };
   };
   
-  export async function createGoal(district: string): Promise<CreateGoalResponse> {
-    try {
-      const res = await instance.post(`${API_PATH}/goal`, { district });
-  
-      if (res.status !== 201) {
-        throw new Error('목표 생성 실패');
+
+export async function createGoal(district: string): Promise<CreateGoalResponse | null> {
+  try {
+    const res = await instance.post(`${API_PATH}/goal`, { district });
+
+    if (res.status !== 201) {
+      // ❌ 비즈니스 로직 에러 처리
+      if (res.status === 400) {
+        // 예: 하루 3회 초과 에러
+        return handleCreateGoalLimitError();
       }
-  
-      return res.data as CreateGoalResponse;
-    } catch (error) {
-      console.error('[createGoal] 목표 생성 중 오류:', error);
-      throw new Error('AI 목표 생성에 실패했습니다.');
+      throw new Error('목표 생성 실패');
     }
+
+    return res.data as CreateGoalResponse;
+  } catch (error: any) {
+    if (error?.response?.status === 400) {
+      return handleCreateGoalLimitError();
+    }
+
+    console.error('[createGoal] 목표 생성 중 오류:', error);
+    throw new Error('AI 목표 생성에 실패했습니다.');
   }
+}
+
+// ✅ 하루 3회 초과 처리 함수
+function handleCreateGoalLimitError(): null {
+  // 서버 환경에서 window.alert 사용 불가하므로 클라이언트에서 처리 필요
+  console.log('[createGoal] 하루 최대 3회까지 생성 가능합니다.');
+  // 또는 리디렉션
+  // redirect('/recommendation'); // next/navigation
+  return null;
+}
+
 
   export async function fetchTodayGoals(): Promise<recommendtion[]> {
     try {

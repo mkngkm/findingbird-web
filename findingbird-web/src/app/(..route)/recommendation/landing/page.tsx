@@ -1,24 +1,39 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { createGoal } from '@/app/business/recommendation/recommendation.service';
 
-export default function RecommendationLanding() {
+export default function GoalLandingPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const district = searchParams.get('district') ?? '';
+  const districtParam = searchParams.get('district');
 
-  const handleCreateGoal = async () => {
-    const result = await createGoal(district);
-
-    if (!result) {
-      alert('AI 목표는 하루 최대 3개까지 생성할 수 있어요!');
-      router.push('/recommendation');
+  useEffect(() => {
+    if (!districtParam) {
+      router.replace('/');
       return;
     }
 
-    router.push('/recommendation');
-  };
+    const create = async () => {
+      const result = await createGoal(districtParam);
+      if (!result) {
+        alert('AI 목표는 하루 최대 3개까지 생성할 수 있어요!');
+        router.replace('/recommendation');
+        return;
+      }
 
-  
+      router.replace('/recommendation');
+    };
+
+    create();
+  }, [districtParam, router]);
+
+  return ( <div className="flex items-center justify-center h-screen bg-white">
+    <div className="text-center">
+      <div className="animate-spin h-10 w-10 border-4 border-birdGreen600 border-t-transparent rounded-full mx-auto mb-6"></div>
+      <div className="text-2xl font-bold text-birdGreen600 mb-2">🎯 목표 생성 중입니다...</div>
+      <div className="text-gray-500">현재 위치를 분석 중입니다. 잠시만 기다려주세요!</div>
+    </div>
+  </div>);
 }
