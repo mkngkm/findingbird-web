@@ -120,7 +120,7 @@ export default function CalendarClient() {
           기록
         </button>
         <button
-          className={`px-4 py-2 text-sm rounded-full ${selectedTab === '지난 목표' ? 'bg-birdGreen00 text-white' : 'bg-gray-200'}`}
+          className={`px-4 py-2 text-sm rounded-full ${selectedTab === '지난 목표' ? 'bg-birdGreen400 text-white' : 'bg-gray-200'}`}
           onClick={() => setSelectedTab('지난 목표')}
         >
           지난 목표
