@@ -24,7 +24,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(globalFont.variable, 'font-pretendard')}>
+      <body className={cn(globalFont.variable, 'font-dung')}>
+
         <Script
           strategy="beforeInteractive"
           src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${process.env.NEXT_PUBLIC_MAP_CLIENT_ID}&submodules=geocoder`}

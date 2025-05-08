@@ -69,7 +69,7 @@ export default async function RecommendationPage({
         className="fixed bottom-14 left-1/2 -translate-x-1/2 bg-birdGreen700 text-white rounded-2xl p-3 flex items-center justify-center shadow-lg hover:bg-birdGreen800 transition z-50"
         aria-label="AI 목표 생성"
       >
-        ai 목표 추가하기
+        AI 목표 추가
       </Link>
     </main>
   );
