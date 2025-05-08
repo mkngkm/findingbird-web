@@ -1,9 +1,7 @@
 "use client";
 
-type Record = {
-  id: string;
-  createdAt: string;
-};
+import { Record } from "@/app/business/record/record.service";
+
 
 export default function RecordListItem({ records }: { records: Record[] }) {
   if (records.length === 0) {
@@ -16,10 +14,12 @@ export default function RecordListItem({ records }: { records: Record[] }) {
     <div className="mt-8 flex flex-col items-center gap-2">
       {records.map((record) => (
         <div
-          key={record.id}
-          className="px-4 py-2 bg-gray-100 rounded-lg w-full max-w-md shadow-sm"
+          key={record.name}
+          className="px-4 py-2 bg-gray-100 rounded-lg w-full max-w-md shadow-sm flex flex-row justify-between items-center"
         >
-          {record.createdAt}
+          <div className="font-semibold text-lg">{record.name}</div>
+          <div className="text-sm text-gray-500">{record.district}</div>
+          
         </div>
       ))}
     </div>
