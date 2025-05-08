@@ -1,6 +1,8 @@
 'use client';
 import React from 'react';
 import { Bird } from './types';
+import Link from 'next/link';
+import { FaPlus } from 'react-icons/fa6';
 
 
 interface BirdDetailDialogProps {
@@ -37,6 +39,13 @@ export default function BirdDetailDialog({ bird, isOpen, onClose }: BirdDetailDi
           <p className="text-gray-600">{bird.ecology}</p>
         </div>
       </div>
+      <Link
+        href={`/record/add?recommendationId=${bird.id}`}
+        className="fixed bottom-14 right-8 bg-birdGreen700 text-white rounded-full w-12 h-12 my-5 flex items-center justify-center shadow-lg hover:bg-birdGreen700 transition"
+        aria-label="조류 충돌 기록 추가"
+      >
+        기록 추가하러 가기
+      </Link>
     </div>
   );
 }

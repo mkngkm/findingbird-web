@@ -50,32 +50,30 @@ export async function createBirdRecord(
   formData: FormData
 ): Promise<FormState> {
   const name = formData.get('name')?.toString() || '';
-  const coordinate = formData.get('coordinate')?.toString();
+  const coordinate = formData.get('coordinate')?.toString(); // 좌표 → 자치구 추출 가능하면 여기에
   const size = formData.get('size')?.toString();
   const color = formData.get('color')?.toString();
+  const district = formData.get('district')?.toString();
   const locationDescription = formData.get('locationDescription')?.toString();
   const image = formData.get('image') as File | null;
-  const isSuggested = formData.get('isSuggested') === 'on';
+  const goalId = formData.get('goalId')?.toString() || '';
 
-  const district = extractDistrictFromCoordinate(coordinate); // 좌표 → 자치구 매핑
-  const goalId = isSuggested ? 'some-ai-goal-id' : ''; // null 아님 빈 문자열로
-
-  if (!coordinate || !size || !color || !locationDescription || !image || !district) {
+  if (!district || !size || !color || !locationDescription || !image) {
     return {
       isSuccess: false,
       isFailure: true,
-      validationError: { coordinate: ['필수 값이 누락되었습니다.'] },
+      validationError: { district: ['필수 값이 누락되었습니다.'] },
       message: '입력값을 확인해주세요.',
     };
   }
 
   const multipartFormData = new FormData();
-  multipartFormData.append('name', name); // null일 수 있으므로 빈 문자열 허용
+  multipartFormData.append('name', name); // null일 수 있음 → 빈 문자열 허용
   multipartFormData.append('district', district);
   multipartFormData.append('size', size);
   multipartFormData.append('color', color);
   multipartFormData.append('locationDescription', locationDescription);
-  multipartFormData.append('goalId', goalId);
+  multipartFormData.append('goalId', goalId); // null인 경우 빈 문자열
   multipartFormData.append('image', image);
 
   try {
@@ -102,11 +100,7 @@ export async function createBirdRecord(
   }
 }
 
-function extractDistrictFromCoordinate(coordinate: string | undefined): string | null {
-  if (!coordinate) return null;
-  // 실제 위경도 → 행정구 파싱 로직으로 교체 필요
-  return '성북구';
-}
+
 
 export async function fetchDailyCalendar(year: number, month: number): Promise<DailyRecord[]> {
   try {

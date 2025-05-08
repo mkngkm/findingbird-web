@@ -14,9 +14,9 @@ export default function RecordAddForm({ recommendationId }: RecordAddFormProps) 
 
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [name, setName] = useState('');
-  const [coordinate, setCoordinate] = useState('');
   const [size, setSize] = useState('');
   const [color, setColor] = useState('');
+  const [district, setDistrict] = useState('');
   const [locationDescription, setLocationDescription] = useState('');
 
   return (
@@ -30,12 +30,10 @@ export default function RecordAddForm({ recommendationId }: RecordAddFormProps) 
           if (imageFile) formData.append('image', imageFile);
 
           formData.set('name', name || '');
-          formData.set('district', coordinate); // ✅ 백엔드 요구 사항에 맞춰 변경
+          formData.set('district', district);
           formData.set('size', size);
           formData.set('color', color);
           formData.set('locationDescription', locationDescription);
-
-          // ✅ goalId는 null이면 빈 문자열로
           formData.set('goalId', recommendationId || '');
 
           return await createBirdRecord(prevState, formData);
@@ -56,12 +54,12 @@ export default function RecordAddForm({ recommendationId }: RecordAddFormProps) 
           />
 
           <Form.TextInput
-            id="coordinate"
+            id="district"
             label="자치구"
             required
             placeholder="예: 서울특별시 강남구"
-            value={coordinate}
-            onValueChange={setCoordinate}
+            value={district}
+            onValueChange={setDistrict}
           />
 
           <Form.TextInput
@@ -84,9 +82,9 @@ export default function RecordAddForm({ recommendationId }: RecordAddFormProps) 
 
           <Form.TextArea
             id="locationDescription"
-            label="위치 설명"
+            label="발견 위치 설명"
             required
-            placeholder="발견한 위치에 대해 설명해 주세요."
+            placeholder="예: 학교 뒤편 잔디밭 근처"
             value={locationDescription}
             onValueChange={setLocationDescription}
           />
