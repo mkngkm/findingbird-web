@@ -15,9 +15,9 @@ export default async function BirdStrikeDetailPage({ searchParams }: { searchPar
           {/* 헤더를 최상단에 고정 */}
           <Header title="조류 충돌 신고 상세" link="/birdstrike" />
     
-          <main className="min-h-screen bg-gray-50">
+          <main className="min-h-screen bg-white">
             {/* main의 패딩 제거, article에 마진 주기 */}
-            <article className="mx-auto max-w-3xl space-y-6 rounded-xl bg-white p-6 shadow">
+            <article className="mx-auto max-w-3xl space-y-6 rounded-xl bg-white p-6">
         {/* 제목 / 작성자 / 작성일 */}
         <div className="space-y-1">
           <h1 className="text-2xl font-bold text-gray-900">{data.title}</h1>
