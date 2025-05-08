@@ -1,24 +1,34 @@
-'use client';
-
-import React from 'react';
-import ReportList from '@/app/ui/components/birdstrike/report-list';
-import { Report } from '@/app/business/birdstrike/types';
+import Link from 'next/link';
 import Header from '@/app/ui/components/header';
+import ReportItem from '@/app/ui/components/birdstrike/report-item';
 
-// 샘플 데이터 (추후 API 연동)
-const dummyReports: Report[] = [
-  { id: 1, title: '도심에서 물총새 충돌 목격', date: '2025-04-10', author: '쇠딱따구리3487' },
-  { id: 2, title: '공원 산책 중 까치 충돌 신고', date: '2025-04-08', author: '해오라기1309' },
-  // ... 추가 데이터
-];
+import { FaPlus } from 'react-icons/fa6';
+import { fetchBirdstrikeList, Report } from '@/app/business/birdstrike/\bbirdstrike.service';
 
-export default function BirdstrikePage() {
+export default async function BirdstrikePage() {
+  const reports = await fetchBirdstrikeList();
+
   return (
     <main className="min-h-screen bg-gray-100 flex flex-col">
-      <Header title="조류 충돌 신고 목록" link="/home" />
+      <Header title="조류 충돌 신고 목록" />
       <div className="flex-1 overflow-y-auto p-4">
-        <ReportList reports={dummyReports} />
+        <div className="mx-auto">
+          {reports && reports.length > 0 ? (
+            reports.map((report: Report) => <ReportItem key={report.id} report={report} />)
+          ) : (
+            <div className="text-gray-500 text-center">조류 충돌 신고가 없습니다.</div>
+          )}
+        </div>
       </div>
+
+      {/* ✅ 플로팅 버튼 */}
+      <Link
+        href="/birdstrike/add"
+        className="fixed bottom-14 right-8 bg-birdGreen700 text-white rounded-full w-12 h-12 my-5 flex items-center justify-center shadow-lg hover:bg-birdGreen700 transition"
+        aria-label="조류 충돌 신고 추가"
+      >
+        <FaPlus className="w-5 h-5" />
+      </Link>
     </main>
   );
 }

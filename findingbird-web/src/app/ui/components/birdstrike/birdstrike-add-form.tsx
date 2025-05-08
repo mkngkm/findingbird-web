@@ -4,7 +4,8 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Form from '@/app/ui/molecule/form/form-index';
-import { BirdstrikeReport } from './types';
+import { createBirdstrikeReport } from '@/app/business/birdstrike/\bbirdstrike.service';
+
 
 export default function BirdstrikeAddForm() {
   const router = useRouter();
@@ -12,22 +13,12 @@ export default function BirdstrikeAddForm() {
   // form state
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [title, setTitle] = useState('');
-  const [birdCount, setBirdCount] = useState<number | ''>('');
+  const [birdCount, setBirdCount] = useState(''); // ✅ string 타입
   const [collisionSiteType, setCollisionSiteType] = useState('');
   const [mitigationApplied, setMitigationApplied] = useState(false);
   const [speciesInfo, setSpeciesInfo] = useState('');
   const [observationLocation, setObservationLocation] = useState('');
   const [description, setDescription] = useState('');
-
-  async function createCollisionReport(prevState: any, formData: FormData) {
-    try {
-      // API 호출 예시
-      console.log('조류 충돌 신고 데이터:', Object.fromEntries(formData.entries()));
-      return { isSuccess: true, isFailure: false, message: null, validationError: {} };
-    } catch (err) {
-      return { isSuccess: false, isFailure: true, message: '등록 중 오류가 발생했습니다.', validationError: {} };
-    }
-  }
 
   return (
     <main className="min-h-screen bg-gray-100 p-5">
@@ -39,7 +30,16 @@ export default function BirdstrikeAddForm() {
         id="birdstrike-report-post"
         action={async (prevState, formData) => {
           if (imageFile) formData.append('image', imageFile);
-          return await createCollisionReport(prevState, formData);
+
+          formData.set('title', title);
+          formData.set('birdCount', String(Number(birdCount))); // ✅ 제출 시 숫자로 변환
+          formData.set('collisionSiteType', collisionSiteType);
+          formData.set('mitigationApplied', mitigationApplied ? 'true' : 'false');
+          formData.set('speciesInfo', speciesInfo);
+          formData.set('observationLocation', observationLocation);
+          formData.set('description', description);
+
+          return await createBirdstrikeReport(prevState, formData);
         }}
         failMessageControl="alert"
         onSuccess={() => {
@@ -60,11 +60,10 @@ export default function BirdstrikeAddForm() {
           <Form.TextInput
             id="birdCount"
             label="개체 수"
-            type="number"
             required
             placeholder="충돌한 새 개체 수"
             value={birdCount}
-            onValueChange={(v) => setBirdCount(Number(v) || '')}
+            onValueChange={setBirdCount}
           />
 
           <Form.TextInput
