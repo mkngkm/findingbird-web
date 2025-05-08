@@ -2,6 +2,7 @@
 import { fetchBirdstrikeDetail } from '@/app/business/birdstrike/\bbirdstrike.service';
 import Header from '@/app/ui/components/header';
 
+
 export default async function BirdStrikeDetailPage({ searchParams }: { searchParams: { id?: string } }) {
   const id = searchParams.id;
   if (!id) return <div>잘못된 접근입니다.</div>;

@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import { Bird } from '../../../business/recommendation/types';
+import { Bird } from '@/app/business/recommendation/recommendation.service'; // ✅ 타입 정확히 가져오기
 
 export interface BirdCardProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -18,14 +18,14 @@ const BirdCard = React.forwardRef<HTMLButtonElement, BirdCardProps>(
       <div className="h-40 bg-gray-200">
         <img
           src={bird.imageUrl}
-          alt={bird.commonName}
+          alt={bird.speciesName}
           className="object-cover w-full h-full"
         />
       </div>
       {/* 텍스트 영역 */}
       <div className="p-4">
         <h3 className="text-lg font-semibold text-gray-800">
-          {bird.commonName}
+          {bird.speciesName}
         </h3>
         <p className="text-sm text-gray-500 italic">
           {bird.scientificName}

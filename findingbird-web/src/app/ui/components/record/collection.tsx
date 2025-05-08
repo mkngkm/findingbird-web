@@ -1,25 +1,34 @@
-// src/app/(..route)/collection/page.tsx
-import React from 'react';
+// src/app/ui/components/record/Collection.tsx
+'use client';
 
+import { useEffect, useState } from 'react';
 import { getBirdsInCollection } from '@/app/business/collection/collection.service';
 import { toDialogBird } from '@/app/business/collection/birdAdapter';
 import type { Bird as DialogBird } from '@/app/ui/components/bird/types';
 
 import { Dialog, DialogTrigger, DialogContent } from '@/app/ui/molecule/dialog/dialog';
 import { Close as DialogClose } from '@radix-ui/react-dialog';
-import BirdCard from '@/app/ui/components/bird/bird-card';
+import BirdCard from '../bird/bird-card';
 
-export default async function CollectionPage() {
-  /* 1) API → 도감 데이터 가져오기 */
-  const apiBirds = await getBirdsInCollection();  // ApiBird[]
-  const birds: DialogBird[] = apiBirds.map((bird) => toDialogBird(bird)); // DialogBird[]
- return (
-    <main className="min-h-screen bg-gray-100 p-5">
+export default function Collection() {
+  const [birds, setBirds] = useState<DialogBird[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const apiBirds = await getBirdsInCollection();
+      const converted = apiBirds.map((bird) => toDialogBird(bird));
+      setBirds(converted);
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <section className="min-h-screen bg-gray-100 p-5">
       <header className="mb-6">
         <h1 className="text-2xl font-semibold text-gray-800">도감</h1>
       </header>
 
-      {/* 3) 카드 + 모달 UI */}
       <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
         {birds.map((bird) => (
           <Dialog key={bird.id}>
@@ -51,6 +60,6 @@ export default async function CollectionPage() {
           </Dialog>
         ))}
       </section>
-    </main>
+    </section>
   );
 }

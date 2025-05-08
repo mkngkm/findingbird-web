@@ -71,7 +71,8 @@ export default {
         "tremor-metric": ["1.875rem", { lineHeight: "2.25rem" }],
       },
       fontFamily: {
-        pretendard: ["var(--font-pretendard)"],
+        pretendard: ["var(--font-pretendard)"], // 기존 유지
+        dung: ["DungGeunMo", "sans-serif"],     // ✅ 추가
       },
     },
   },
