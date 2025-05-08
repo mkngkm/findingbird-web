@@ -1,4 +1,4 @@
-'use client';
+
 
 import Header from "@/app/ui/components/header";
 import RecordAddForm from "@/app/ui/components/birdstrike/birdstrike-add-form";

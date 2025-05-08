@@ -1,29 +1,20 @@
 'use client';
 
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
-import Cookies from 'js-cookie';
 
 export default function KakaoCallbackPage() {
   const searchParams = useSearchParams();
-  const router = useRouter();
   const accessToken = searchParams.get('accessToken');
 
   useEffect(() => {
     if (accessToken) {
-      // ✅ 클라이언트 쿠키에 accessToken 저장
-      Cookies.set('token', accessToken, {
-        secure: true,
-        sameSite: 'Lax',
-        path: '/',
-        expires: 1, // 1일 (선택사항)
-      });
-
-      router.push('/home');
+      // ✅ 서버 API를 통해 HttpOnly 쿠키 저장
+      window.location.href = `/api/auth/kakao?accessToken=${accessToken}`;
     } else {
-      router.push('/auth/fail'); // 실패 페이지로 이동
+      window.location.href = '/auth/fail';
     }
-  }, [accessToken, router]);
+  }, [accessToken]);
 
   return (
     <div className="p-10 text-center">
