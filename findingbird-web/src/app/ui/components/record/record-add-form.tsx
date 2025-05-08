@@ -5,7 +5,11 @@ import { useRouter } from 'next/navigation';
 import Form from '../../molecule/form/form-index';
 import { createBirdRecord } from '@/app/business/record/record.service';
 
-export default function RecordAddForm() {
+interface RecordAddFormProps {
+  recommendationId: string | null;
+}
+
+export default function RecordAddForm({ recommendationId }: RecordAddFormProps) {
   const router = useRouter();
 
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -14,7 +18,6 @@ export default function RecordAddForm() {
   const [size, setSize] = useState('');
   const [color, setColor] = useState('');
   const [locationDescription, setLocationDescription] = useState('');
-  const [isSuggested, setIsSuggested] = useState(false);
 
   return (
     <main>
@@ -24,15 +27,16 @@ export default function RecordAddForm() {
       <Form
         id="bird-record-post"
         action={async (prevState, formData) => {
-          if (imageFile) {
-            formData.append('image', imageFile);
-          }
+          if (imageFile) formData.append('image', imageFile);
+
           formData.set('name', name || '');
-          formData.set('coordinate', coordinate);
+          formData.set('district', coordinate); // ✅ 백엔드 요구 사항에 맞춰 변경
           formData.set('size', size);
           formData.set('color', color);
           formData.set('locationDescription', locationDescription);
-          formData.set('isSuggested', isSuggested ? 'on' : '');
+
+          // ✅ goalId는 null이면 빈 문자열로
+          formData.set('goalId', recommendationId || '');
 
           return await createBirdRecord(prevState, formData);
         }}
@@ -94,19 +98,6 @@ export default function RecordAddForm() {
             required
             onImageChange={setImageFile}
           />
-
-          <div className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              id="isSuggested"
-              checked={isSuggested}
-              onChange={(e) => setIsSuggested(e.target.checked)}
-              className="w-4 h-4"
-            />
-            <label htmlFor="isSuggested" className="text-sm">
-              AI가 추천한 새인가요?
-            </label>
-          </div>
 
           <Form.SubmitButton label="기록 추가하기" className="w-full h-12 text-base" />
         </div>
