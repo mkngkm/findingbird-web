@@ -84,8 +84,7 @@ export default function CalendarClient() {
   return (
     <div className="relative pb-20"> {/* 플로팅 버튼 공간 확보 */}
       {/* 상단 연/월 변경 */}
-      <div className="flex justify-between items-center w-full max-w-md mb-4 px-4">
-        <button onClick={() => changeMonth(-1)}>&lt;</button>
+      <div className="flex justify-between items-center w-full max-w-md mb-4 px-4 text-2xl font-semibold">        <button onClick={() => changeMonth(-1)}>&lt;</button>
         <CalendarModal year={year} month={month} setYear={setYear} setMonth={setMonth} />
         <button onClick={() => changeMonth(1)}>&gt;</button>
       </div>
@@ -115,13 +114,13 @@ export default function CalendarClient() {
       {/* 기록/목표 탭 */}
       <div className="mt-6 flex justify-center space-x-4">
         <button
-          className={`px-4 py-2 rounded-full ${selectedTab === '기록' ? 'bg-birdGreen600 text-white' : 'bg-gray-200'}`}
+          className={`px-4 py-2 text-sm rounded-full ${selectedTab === '기록' ? 'bg-birdGreen400 text-white' : 'bg-gray-200'}`}
           onClick={() => setSelectedTab('기록')}
         >
           기록
         </button>
         <button
-          className={`px-4 py-2 rounded-full ${selectedTab === '지난 목표' ? 'bg-birdGreen600 text-white' : 'bg-gray-200'}`}
+          className={`px-4 py-2 text-sm rounded-full ${selectedTab === '지난 목표' ? 'bg-birdGreen400 text-white' : 'bg-gray-200'}`}
           onClick={() => setSelectedTab('지난 목표')}
         >
           지난 목표
