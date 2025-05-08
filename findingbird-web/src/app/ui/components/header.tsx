@@ -15,7 +15,7 @@ export default function Header({ title, link }: HeaderProps) {
           <Image src={IconBack} alt='뒤로가기' />
         </Link>
       ) : null}
-      <div>{title}</div>
+      <div className='flex-1 text-center'>{title}</div>
     </div>
   );
 }
