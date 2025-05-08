@@ -6,6 +6,45 @@ import { createHttpInstance } from '@/app/utils/http/index';
 
 const instance = createHttpInstance(true); // ✅ 서버 사이드
 
+export type Bird = {
+  id: string;
+  speciesName: string;
+  scientificName: string;
+  habitatType: string;
+  appearanceCount: number;
+  morphoTrait: string;
+  ecoTrait: string;
+  districts: string[];
+  imageUrl: string;
+};
+
+export type Goal = {
+  id: string;
+  isCompleted: boolean;
+  createdAt: string;
+  bird: Bird;
+};
+
+export type Record = {
+  id: string;
+  name: string;
+  imageUrl: string;
+  district: string;
+  size: string;
+  color: string;
+  locationDescription: string;
+  goalId: string;
+  createdAt: string;
+};
+
+export type DailyRecord = {
+  date: number;
+  hasRecords: boolean;
+  records: Record[];
+  goals: Goal[];
+};
+
+
 export async function createBirdRecord(
   prevState: FormState,
   formData: FormData
@@ -67,4 +106,37 @@ function extractDistrictFromCoordinate(coordinate: string | undefined): string |
   if (!coordinate) return null;
   // 실제 위경도 → 행정구 파싱 로직으로 교체 필요
   return '성북구';
+}
+
+export async function fetchDailyCalendar(year: number, month: number): Promise<DailyRecord[]> {
+  try {
+    const res = await instance.get(`${API_PATH}/calendar`, {
+      params: { year, month },
+    });
+
+    return res.data.dailyPreviews.map((preview: any) => ({
+      date: preview.date,
+      hasRecords: preview.hasRecords,
+      records: (preview.records || []).map((r: any) => ({
+        id: r.id,
+        name: r.name,
+        imageUrl: r.imageUrl,
+        district: r.district,
+        size: r.size,
+        color: r.color,
+        locationDescription: r.locationDescription,
+        goalId: r.goalId,
+        createdAt: r.createdAt,
+      })),
+      goals: (preview.goals || []).map((g: any) => ({
+        id: g.id,
+        isCompleted: g.isCompleted,
+        createdAt: g.createdAt,
+        bird: g.bird,
+      })),
+    }));
+  } catch (e) {
+    console.error('[fetchDailyCalendar] 에러:', e);
+    return [];
+  }
 }
