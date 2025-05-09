@@ -17,7 +17,18 @@ export default async function RecommendationPage({
   return (
     <main className="min-h-screen bg-gray-100 flex flex-col">
       <Header title="AI 추천 목표" link="/home" />
-
+{/* ✅ 교육용 외부 링크 배너 */}
+<a
+        href="https://parks.seoul.go.kr/ecoinfo/ecology/wild.do"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-birdGreen700 text-white px-4 py-3 flex justify-between items-center w-full mb-5"
+      >
+        <div className="text-base font-semibold">서울시의 환경생태는?</div>
+        <div className="text-sm bg-white text-birdGreen700 font-semibold px-3 py-1 rounded">
+          자세히 →
+        </div>
+      </a>
       <section className="grid grid-cols-1 sm:grid-cols-2 gap-4">
   {goals.length === 0 ? (
     <div className="col-span-full text-center text-gray-500 py-10">

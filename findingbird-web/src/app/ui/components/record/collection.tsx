@@ -24,10 +24,23 @@ export default function Collection() {
   }, []);
 
   return (
-    <section className="min-h-screen bg-gray-100 p-5">
+    <section className="min-h-screen bg-gray-100 rounded-lg shadow p-3">
+      {/* ✅ 교육용 외부 링크 배너 */}
+<a
+        href="https://www.si.re.kr/bbs/view.do?key=2024100042&pstSn=1512070009"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-birdGreen700 text-white px-4 py-3 flex justify-between items-center w-full mb-5"
+      >
+        <div className="text-base font-semibold">서울에서 가장 흔한 새?</div>
+        <div className="text-sm bg-white text-birdGreen700 font-semibold px-1  rounded">
+          클릭
+        </div>
+      </a>
       <header className="mb-6">
         <h1 className="text-2xl font-semibold text-gray-800">도감</h1>
       </header>
+      
 
       <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
         {birds.map((bird) => (

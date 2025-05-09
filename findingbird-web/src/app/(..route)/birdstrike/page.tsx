@@ -12,7 +12,21 @@ export default async function BirdstrikePage() {
   return (
     <main className="min-h-screen bg-gray-100 flex flex-col">
       <Header title="조류 충돌 신고 목록" />
+{/* ✅ 교육용 외부 링크 배너 */}
+<a
+        href="https://ecoarchive.org/items/show/60006"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-birdGreen700 text-white px-4 py-3 flex justify-between items-center w-full"
+      >
+        <div className="text-base font-semibold">조류 충돌 방지</div>
+        <div className="text-sm bg-white text-birdGreen700 font-semibold px-3 py-1 rounded">
+          자세히 알아보기 →
+        </div>
+      </a>
+      
       <div className="flex-1 overflow-y-auto p-4">
+        
         <div className="mx-auto">
           {reports && reports.length > 0 ? (
             reports.map((report: Report) => <ReportItem key={report.id} report={report} />)
