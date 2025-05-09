@@ -11,7 +11,7 @@ export default function RecordAddPage({
 
 
   return (
-    <div className="h-full flex flex-col justify-center">
+    <div className="flex-1 overflow-y-auto flex flex-col justify-center">
       <Header title="관찰 기록 추가하기" link="/record" />
       <div className="px-5 mb-10 mt-5">
         <RecordAddForm recommendationId={recommendationId} />

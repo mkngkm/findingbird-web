@@ -1,11 +1,9 @@
 
-
-import { useEffect } from 'react';
-import Cookies from 'js-cookie';
 import { redirect, useRouter } from 'next/navigation';
 import LoginForm from './ui/components/auth/login-form';
-import Image from 'next/image';
 import { cookies } from 'next/headers';
+import bird from '@/app/assets/img/bird.png';
+import Image from 'next/image';
 
 export default function RootPage() {
   const token = cookies().get('accessToken')?.value;
@@ -16,8 +14,23 @@ export default function RootPage() {
   }
 
   return (
-    <div className='px-10 mb-10 flex flex-col items-center'>
-      <div className="mt-8 w-full">
+    <div className="flex flex-col items-center justify-center flex-1 overflow-y-auto px-6 py-12 bg-white">
+      {/* 🐦 새 이미지 */}
+      <div className="w-120 h-120 ">
+        <Image
+          src={bird}
+          alt="귀여운 새"
+          width={280}
+          height={280}
+          className="object-contain"
+        />
+      </div>
+
+      {/* "새 보러 가자~!" 텍스트 */}
+      <h1 className="text-4xl font-bold text-birdGreen700 mb-20">{"{새}^{*}보러가자!"}</h1>
+
+      {/* 카카오 로그인 버튼 */}
+      <div className="w-full max-w-xs">
         <LoginForm />
       </div>
     </div>

@@ -10,7 +10,7 @@ export default async function BirdstrikePage() {
   const reports = await fetchBirdstrikeList();
 
   return (
-    <main className="min-h-screen bg-gray-100 flex flex-col">
+    <main className="flex-1 overflow-y-auto bg-gray-100 flex flex-col">
       <Header title="조류 충돌 신고 목록" />
 {/* ✅ 교육용 외부 링크 배너 */}
 <a

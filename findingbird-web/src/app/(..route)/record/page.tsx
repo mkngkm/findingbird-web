@@ -11,7 +11,7 @@ export default function RecordPage() {
 
   return (
     <main>
-      <div className="h-full flex flex-col justify-center">
+      <div className="flex-1 overflow-y-auto flex flex-col justify-center">
         <div className="flex-1 overflow-y-auto p-5">
           <div className="flex justify-center mb-6">
             <TextToggleButton text="기록/도감" onToggle={(active) => setShowEncyclopedia(active)} />

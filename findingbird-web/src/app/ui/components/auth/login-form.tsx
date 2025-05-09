@@ -13,7 +13,7 @@ export default function LoginForm() {
     <div className="flex flex-col gap-6 items-center">
       <AchromaticButton
         onClick={handleKakaoLogin}
-        className="w-full h-12 bg-yellow-300 text-black font-semibold rounded-lg shadow"
+        className="w-full h-12 bg-yellow-300 text-black text-lg font-semibold rounded-lg shadow"
       >
         카카오로 로그인
       </AchromaticButton>

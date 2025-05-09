@@ -24,7 +24,7 @@ export default function Collection() {
   }, []);
 
   return (
-    <section className="min-h-screen bg-gray-100 rounded-lg shadow p-3">
+    <section className="flex-1 overflow-y-auto bg-gray-100 rounded-lg shadow p-3">
       {/* ✅ 교육용 외부 링크 배너 */}
 <a
         href="https://www.si.re.kr/bbs/view.do?key=2024100042&pstSn=1512070009"
@@ -42,7 +42,7 @@ export default function Collection() {
       </header>
       
 
-      <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+      <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2">
         {birds.map((bird) => (
           <Dialog key={bird.id}>
             <DialogTrigger asChild>

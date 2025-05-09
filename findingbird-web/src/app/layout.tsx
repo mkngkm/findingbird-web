@@ -27,18 +27,22 @@ export default function RootLayout({
       <body
   className={cn(
     globalFont.variable,
-    'font-dung w-full max-w-[420px] min-h-screen bg-white relative',
-    'shadow-[0_0_5px_rgba(0,0,0,0.08)] rounded-xl' // ✅ 미세 그림자
+    'font-dung w-full max-w-[420px] min-h-[100dvh] bg-white relative flex flex-col',
+    'shadow-[0_0_5px_rgba(0,0,0,0.08)] rounded-xl'
   )}
 >
+  <Script
+    strategy="beforeInteractive"
+    src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${process.env.NEXT_PUBLIC_MAP_CLIENT_ID}&submodules=geocoder`}
+  />
 
-        <Script
-          strategy="beforeInteractive"
-          src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${process.env.NEXT_PUBLIC_MAP_CLIENT_ID}&submodules=geocoder`}
-        />
-        <div className="pb-14">{children}</div> {/* ✅ 하단 탭바 여백 확보 */}
-        <TabBarWrapper /> {/* ✅ 고정된 너비 내에서 함께 렌더링 */}
-      </body>
+  {/* ✅ children이 flex-1로 자라날 수 있음 */}
+  <div className="flex flex-col flex-1 overflow-hidden pb-13">{children}</div>
+
+  {/* ✅ 고정된 하단 탭바 */}
+  <TabBarWrapper />
+</body>
+
     </html>
   );
 }

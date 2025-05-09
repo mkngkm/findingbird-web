@@ -14,7 +14,7 @@ export default function RecordDetailPage({
   const imageUrl = (searchParams.imageUrl ?? null) as string | null;
 
   return (
-    <main className="min-h-screen bg-gray-100">
+    <main className="flex-1 overflow-y-auto bg-gray-100">
       <Header title="기록 상세보기" link="/record" />
       <section className="bg-white rounded-lg shadow p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
         <img

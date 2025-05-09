@@ -19,7 +19,7 @@ const BirdCard = React.forwardRef<HTMLButtonElement, BirdCardProps>(
         <img
           src={bird.imageUrl}
           alt={bird.speciesName}
-          className="object-cover w-full h-full"
+          className="object-cover w-full flex-1 overflow-y-auto"
         />
       </div>
       {/* 텍스트 영역 */}

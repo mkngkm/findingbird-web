@@ -15,7 +15,7 @@ export default async function RecommendationPage({
   const goals = await fetchTodayGoals();
 
   return (
-    <main className="min-h-screen bg-gray-100 flex flex-col">
+    <main className="flex-1 overflow-y-auto bg-gray-100 flex flex-col">
       <Header title="AI 추천 목표" link="/home" />
 {/* ✅ 교육용 외부 링크 배너 */}
 <a
