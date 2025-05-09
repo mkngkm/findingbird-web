@@ -5,8 +5,6 @@ export function middleware(request: NextRequest) {
   const token = request.cookies.get('accessToken')?.value;
   const { pathname } = request.nextUrl;
 
-  console.log('[middleware] token:', token);
-
   const isRoot = pathname === '/';
   const protectedPaths = ['/home', '/record', '/recommendation', '/birdstrike'];
 

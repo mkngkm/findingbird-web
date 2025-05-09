@@ -15,7 +15,12 @@ export default function TabBar() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 left-0 w-full bg-white border-t shadow z-50">
+    <nav
+      className={cn(
+        'fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[420px]',
+        'bg-white border-t shadow z-50'
+      )}
+    >
       <div className="flex justify-around py-2">
         {tabs.map((tab) => {
           const isActive = pathname.startsWith(tab.href);
@@ -36,3 +41,4 @@ export default function TabBar() {
     </nav>
   );
 }
+
