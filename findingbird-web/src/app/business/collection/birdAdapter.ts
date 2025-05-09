@@ -1,5 +1,5 @@
 //findingbird-web/src/app/business/collection/birdAdapter.ts
-import type { Bird as ApiBird } from '@/app/business/collection/collection.service';
+import type { ApiBird } from '@/app/business/collection/collection.service';
 // dialog 컴포넌트가 기대하는 타입
 import type { Bird as DialogBird } from '@/app/ui/components/bird/types';
 

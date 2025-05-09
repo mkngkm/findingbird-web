@@ -19,6 +19,7 @@ export default function CalendarClient() {
   const [selectedGoals, setSelectedGoals] = useState<Goal[]>([]);
   const [selectedTab, setSelectedTab] = useState<'기록' | '지난 목표'>('기록');
 
+  //eslint-disable-next-line
   useEffect(() => {
     const fetchData = async () => {
       const records = await fetchDailyCalendar(year, month);

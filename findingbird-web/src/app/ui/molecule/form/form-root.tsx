@@ -40,6 +40,7 @@ export function FormRoot({
   };
   const [formState, dispatch] = useFormState(action, initialState);
 
+  //eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (formState.isSuccess) {
       onSuccess?.();

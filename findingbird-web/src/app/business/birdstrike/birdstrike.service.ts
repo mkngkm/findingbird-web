@@ -34,7 +34,7 @@ export type BirdStrikeDetail = {
 export async function fetchBirdstrikeList(): Promise<Report[]> {
     try {
       const res = await instance.get(`${API_PATH}/report`);
-      return (res.data || []).map((item: any) => ({
+      return (res.data || []).map((item: Report) => ({
         id: item.id,
         nickname: item.nickname,
         title: item.title,

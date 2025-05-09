@@ -1,7 +1,7 @@
 // app/api/ebird/route.ts
 import { NextRequest, NextResponse } from "next/server";
 
-const EBIRD_TOKEN = process.env.NEXT_PUBLIC_EBIRD_API_TOKEN;
+const EBIRD_TOKEN = process.env.EBIRD_API_TOKEN;
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
