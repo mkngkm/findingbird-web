@@ -2,6 +2,7 @@
 
 import { API_PATH } from '@/app/utils/http/api-query';
 import { createHttpInstance } from '@/app/utils/http/index';
+import { redirect } from 'next/navigation';
 
 const instance = createHttpInstance(true); // ✅ 서버 사이드
 
@@ -81,9 +82,15 @@ export async function createGoal(district: string): Promise<CreateGoalResponse |
       return handleCreateGoalLimitError();
     }
 
+    // ✅ 토큰 만료 등으로 인한 인증 실패 시 로그인 페이지로 리다이렉트
+    if (error?.response?.status === 401) {
+      redirect('/auth/login');
+    }
+
     console.error('[createGoal] 목표 생성 중 오류:', error);
     throw new Error('AI 목표 생성에 실패했습니다.');
   }
+  
 }
 
 // ✅ 하루 3회 초과 처리 함수
