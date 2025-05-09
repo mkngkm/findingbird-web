@@ -1,3 +1,5 @@
+import Header from "@/app/ui/components/header";
+
 // src/app/(..route)/record/detail/page.tsx
 export default function RecordDetailPage({
   searchParams,
@@ -12,11 +14,8 @@ export default function RecordDetailPage({
   const imageUrl = (searchParams.imageUrl ?? null) as string | null;
 
   return (
-    <main className="min-h-screen bg-gray-100 p-5">
-      <header className="mb-6">
-        <h1 className="text-2xl font-semibold text-gray-800">기록 상세</h1>
-      </header>
-
+    <main className="min-h-screen bg-gray-100">
+      <Header title="기록 상세보기" link="/record" />
       <section className="bg-white rounded-lg shadow p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
         <img
           src={imageUrl || ''}
