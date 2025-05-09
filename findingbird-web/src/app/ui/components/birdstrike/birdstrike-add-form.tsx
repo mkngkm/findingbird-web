@@ -1,4 +1,3 @@
-// src/app/ui/components/birdstrike/birdstrike-add-form.tsx
 'use client';
 
 import React, { useState } from 'react';
@@ -6,14 +5,13 @@ import { useRouter } from 'next/navigation';
 import Form from '@/app/ui/molecule/form/form-index';
 import { createBirdstrikeReport } from '@/app/business/birdstrike/\bbirdstrike.service';
 
-
 export default function BirdstrikeAddForm() {
   const router = useRouter();
 
   // form state
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [title, setTitle] = useState('');
-  const [birdCount, setBirdCount] = useState(''); // ✅ string 타입
+  const [birdCount, setBirdCount] = useState('');
   const [collisionSiteType, setCollisionSiteType] = useState('');
   const [mitigationApplied, setMitigationApplied] = useState(false);
   const [speciesInfo, setSpeciesInfo] = useState('');
@@ -28,16 +26,34 @@ export default function BirdstrikeAddForm() {
       <Form
         id="birdstrike-report-post"
         action={async (prevState, formData) => {
-          if (imageFile) formData.append('image', imageFile);
+          // ✅ 유효성 검사
+          if (!imageFile) {
+            alert('이미지를 업로드해주세요.');
+            return prevState;
+          }
 
+          const validTypes = ['image/jpeg', 'image/png'];
+          if (!validTypes.includes(imageFile.type)) {
+            alert('이미지는 JPG 또는 PNG 형식만 가능합니다.');
+            return prevState;
+          }
+
+          if (!birdCount || isNaN(Number(birdCount))) {
+            alert('개체 수는 숫자만 입력 가능합니다.');
+            return prevState;
+          }
+
+          // ✅ 폼 데이터 세팅
+          formData.append('image', imageFile);
           formData.set('title', title);
-          formData.set('birdCount', String(Number(birdCount))); // ✅ 제출 시 숫자로 변환
+          formData.set('birdCount', String(Number(birdCount)));
           formData.set('collisionSiteType', collisionSiteType);
           formData.set('mitigationApplied', mitigationApplied ? 'true' : 'false');
           formData.set('speciesInfo', speciesInfo);
           formData.set('observationLocation', observationLocation);
           formData.set('description', description);
 
+          // ✅ 신고 등록 요청
           return await createBirdstrikeReport(prevState, formData);
         }}
         failMessageControl="alert"
@@ -80,7 +96,8 @@ export default function BirdstrikeAddForm() {
               id="mitigationApplied"
               checked={mitigationApplied}
               onChange={(e) => setMitigationApplied(e.target.checked)}
-              className="w-4 h-4 text-birdGreen400"/>
+              className="w-4 h-4 text-birdGreen400"
+            />
             <label htmlFor="mitigationApplied" className="text-sm">
               저감 조치 적용 여부
             </label>

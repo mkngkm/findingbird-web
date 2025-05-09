@@ -83,7 +83,7 @@ export default function CalendarClient() {
   const daysArray = [...Array(firstDay).fill(null), ...Array.from({ length: daysInMonth }, (_, i) => i + 1)];
 
   return (
-    <div className="relative pb-20"> {/* 플로팅 버튼 공간 확보 */}
+    <div className="pb-20"> {/* 플로팅 버튼 공간 확보 */}
       {/* 상단 연/월 변경 */}
       <div className="flex justify-between items-center w-full max-w-md mb-4 px-4 text-2xl font-semibold">        <button onClick={() => changeMonth(-1)}>&lt;</button>
         <CalendarModal year={year} month={month} setYear={setYear} setMonth={setMonth} />
@@ -148,7 +148,7 @@ export default function CalendarClient() {
       {/* ✅ 플로팅 버튼 */}
       <button
         onClick={() => router.push('/record/add')}
-        className="fixed bottom-14 right-8 bg-birdGreen700 text-white rounded-full w-12 h-12 my-5  flex items-center justify-center shadow-lg hover:bg-birdGreen700 transition"
+        className="absolute bottom-14 right-8 bg-birdGreen700 text-white rounded-full w-12 h-12 my-5  flex items-center justify-center shadow-lg hover:bg-birdGreen700 transition"
         aria-label="기록 추가하기"
       >
          <FaPlus className="w-5 h-5" /> {/* ✅ 아이콘으로 교체 */}

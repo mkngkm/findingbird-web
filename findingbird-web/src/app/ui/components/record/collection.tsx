@@ -8,7 +8,7 @@ import type { Bird as DialogBird } from '@/app/ui/components/bird/types';
 
 import { Dialog, DialogTrigger, DialogContent } from '@/app/ui/molecule/dialog/dialog';
 import { Close as DialogClose } from '@radix-ui/react-dialog';
-import BirdCard from '../bird/bird-card';
+import { BirdCard } from '@/app/ui/components/bird/bird-card';
 
 export default function Collection() {
   const [birds, setBirds] = useState<DialogBird[]>([]);

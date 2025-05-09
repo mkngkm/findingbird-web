@@ -18,7 +18,7 @@ export default function TabBar() {
     <nav
       className={cn(
         'fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[420px]',
-        'bg-white border-t shadow z-50'
+        'bg-white border-t shadow'
       )}
     >
       <div className="flex justify-around py-2">

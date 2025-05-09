@@ -14,7 +14,7 @@ export default function RootPage() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center flex-1 overflow-y-auto px-6 py-12 bg-white">
+    <div className="flex flex-col items-center justify-center flex-1 overflow-y-auto px-6 py-12 bg-[#F6F1DD]">
       {/* 🐦 새 이미지 */}
       <div className="w-120 h-120 ">
         <Image

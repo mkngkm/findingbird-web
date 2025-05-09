@@ -10,7 +10,7 @@ export default async function BirdstrikePage() {
   const reports = await fetchBirdstrikeList();
 
   return (
-    <main className="flex-1 overflow-y-auto bg-gray-100 flex flex-col">
+    <main className="relative flex-1 overflow-y-auto bg-gray-100 flex flex-col">
       <Header title="조류 충돌 신고 목록" />
 {/* ✅ 교육용 외부 링크 배너 */}
 <a
@@ -39,7 +39,7 @@ export default async function BirdstrikePage() {
       {/* ✅ 플로팅 버튼 */}
       <Link
         href="/birdstrike/add"
-        className="fixed bottom-14 right-8 bg-birdGreen700 text-white rounded-full w-12 h-12 my-5 flex items-center justify-center shadow-lg hover:bg-birdGreen700 transition"
+        className="absolute bottom-14 right-8 bg-birdGreen700 text-white rounded-full w-12 h-12 my-5 flex items-center justify-center shadow-lg hover:bg-birdGreen700 transition"
         aria-label="조류 충돌 신고 추가"
       >
         <FaPlus className="w-5 h-5" />

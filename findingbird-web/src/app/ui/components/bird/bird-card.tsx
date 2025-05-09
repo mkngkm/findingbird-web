@@ -1,29 +1,30 @@
 'use client';
+
 import * as React from 'react';
-import { Bird } from '@/app/business/recommendation/recommendation.service'; // ✅ 타입 정확히 가져오기
+import { Bird } from '@/app/business/recommendation/recommendation.service';
 
 export interface BirdCardProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   bird: Bird;
 }
 
-const BirdCard = React.forwardRef<HTMLButtonElement, BirdCardProps>(
-  ({ bird, className = '', ...props }, ref) => (
+export function BirdCard({ bird, className = '', ...props }: BirdCardProps) {
+  return (
     <button
-      ref={ref}
       {...props}
-      className={`flex flex-col bg-white rounded-lg shadow overflow-hidden mb-4 focus:outline-none ${className}`}
+      className={`flex flex-col p-2 bg-white rounded-lg shadow overflow-hidden mb-4 focus:outline-none ${className}`}
     >
       {/* 이미지 영역 */}
-      <div className="h-40 bg-gray-200">
+      <div className="h-40 bg-white flex items-center justify-center p-2">
         <img
           src={bird.imageUrl}
           alt={bird.speciesName}
-          className="object-cover w-full flex-1 overflow-y-auto"
+          className="object-contain w-full h-full"
         />
       </div>
+
       {/* 텍스트 영역 */}
-      <div className="p-4">
+      <div className="p-2">
         <h3 className="text-lg font-semibold text-gray-800">
           {bird.speciesName}
         </h3>
@@ -32,8 +33,5 @@ const BirdCard = React.forwardRef<HTMLButtonElement, BirdCardProps>(
         </p>
       </div>
     </button>
-  )
-);
-
-BirdCard.displayName = 'BirdCard';
-export default BirdCard;
+  );
+}
