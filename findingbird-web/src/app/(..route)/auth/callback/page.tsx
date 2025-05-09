@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic'; // ✅ 정적 빌드 방지
+
 import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 

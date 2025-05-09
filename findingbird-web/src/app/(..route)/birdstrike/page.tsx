@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import Link from 'next/link';
 import Header from '@/app/ui/components/header';
 import ReportItem from '@/app/ui/components/birdstrike/report-item';

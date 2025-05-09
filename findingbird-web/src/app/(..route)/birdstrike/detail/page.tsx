@@ -1,4 +1,5 @@
 // ✅ 조류 충돌 상세 페이지 (서버 컴포넌트)
+
 import { fetchBirdstrikeDetail } from '@/app/business/birdstrike/\bbirdstrike.service';
 import Header from '@/app/ui/components/header';
 

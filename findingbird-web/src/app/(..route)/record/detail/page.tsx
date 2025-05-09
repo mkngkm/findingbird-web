@@ -1,17 +1,15 @@
 // src/app/(..route)/record/detail/page.tsx
-'use client';
-
-import { useSearchParams } from 'next/navigation';
-
-export default function RecordDetailPage() {
-  const params = useSearchParams();
-
-  const name = params.get('name');
-  const district = params.get('district');
-  const size = params.get('size');
-  const color = params.get('color');
-  const locationDescription = params.get('locationDescription');
-  const imageUrl = params.get('imageUrl');
+export default function RecordDetailPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  const name = (searchParams.name ?? null) as string | null;
+  const district = (searchParams.district ?? null) as string | null;
+  const size = (searchParams.size ?? null) as string | null;
+  const color = (searchParams.color ?? null) as string | null;
+  const locationDescription = (searchParams.locationDescription ?? null) as string | null;
+  const imageUrl = (searchParams.imageUrl ?? null) as string | null;
 
   return (
     <main className="min-h-screen bg-gray-100 p-5">
