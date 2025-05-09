@@ -8,7 +8,7 @@ export interface BirdCardProps
   bird: Bird;
 }
 
-export function BirdCard({ bird, className = '', ...props }: BirdCardProps) {
+export default function BirdCard({ bird, className = '', ...props }: BirdCardProps) {
   return (
     <button
       {...props}

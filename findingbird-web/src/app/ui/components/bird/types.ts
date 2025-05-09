@@ -8,4 +8,5 @@ export type Bird = {
   ecoTrait: string;
   districts: string[];
   imageUrl: string;
+  realImageUrl: string | undefined;
 };

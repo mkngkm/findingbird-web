@@ -1,7 +1,8 @@
 // src/app/(..route)/recommendation/page.tsx
 import { fetchTodayGoals, Bird } from '@/app/business/recommendation/recommendation.service';
-import Header from '@/app/ui/components/header';
 import BirdCard from '@/app/ui/components/bird/bird-card';
+import Header from '@/app/ui/components/header';
+import AddGoalButton from '@/app/ui/components/recommendation/add-goal-button';
 import { Dialog, DialogTrigger, DialogContent } from '@/app/ui/molecule/dialog/dialog';
 import { Close as DialogClose } from '@radix-ui/react-dialog';
 import Link from 'next/link';
@@ -29,7 +30,7 @@ export default async function RecommendationPage({
           자세히 →
         </div>
       </a>
-      <section className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <section className="grid grid-cols-1 gap-4">
   {goals.length === 0 ? (
     <div className="col-span-full text-center text-gray-500 py-10">
       아직 제안된 목표가 없습니다.<br />
@@ -79,16 +80,7 @@ export default async function RecommendationPage({
     })
   )}
 </section>
-
-
-      {/* 하단 중앙 플로팅 버튼 */}
-      <Link
-        href={`/recommendation/landing?district=${districtParam ?? ''}`}
-        className="fixed bottom-16 left-1/2 transform -translate-x-1/2 bg-birdGreen600 text-white font-semibold rounded-full px-6 py-3 shadow-lg"
-        aria-label="AI 목표 생성"
-      >
-        AI 목표 추가
-      </Link>
+       <AddGoalButton districtParam={districtParam} />
     </main>
   );
 }

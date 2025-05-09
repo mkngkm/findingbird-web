@@ -8,7 +8,8 @@ import type { Bird as DialogBird } from '@/app/ui/components/bird/types';
 
 import { Dialog, DialogTrigger, DialogContent } from '@/app/ui/molecule/dialog/dialog';
 import { Close as DialogClose } from '@radix-ui/react-dialog';
-import { BirdCard } from '@/app/ui/components/bird/bird-card';
+import BirdCard from '../bird/bird-card';
+
 
 export default function Collection() {
   const [birds, setBirds] = useState<DialogBird[]>([]);
@@ -52,7 +53,7 @@ export default function Collection() {
             <DialogContent title={bird.speciesName} description={bird.scientificName}>
               <div id="scrollableDiv" className="max-h-[54vh] overflow-y-auto pr-2">
                 <img
-                  src={bird.imageUrl}
+                  src={bird.realImageUrl}
                   alt={bird.speciesName}
                   className="mb-4 w-full rounded object-cover"
                 />

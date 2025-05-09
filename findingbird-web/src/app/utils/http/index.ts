@@ -44,7 +44,7 @@ export const createHttpInstance = (isServer: boolean): AxiosInstance => {
 
       // ✅ 서버에서 401 → 바로 리디렉트
       if (error.response?.status === 401 && isServer) {
-        redirect('/'); // ← 여기!
+       redirect('/'); // 서버 리디렉트
       }
 
       return Promise.reject(error);
