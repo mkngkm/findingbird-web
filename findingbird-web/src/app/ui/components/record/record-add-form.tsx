@@ -21,8 +21,8 @@ export default function RecordAddForm({ recommendationId }: RecordAddFormProps) 
 
   return (
     <main>
-      <div className="text-center font-semibold text-2xl text-birdGreen400 mb-6">
-        오늘 새를 발견하셨나요?
+      <div className="text-center font-semibold px-5 py-1 text-birdGreen400 mb-2 leading-tight">
+        오늘 관찰한 새를 기록해보세요!
       </div>
       <Form
         id="bird-record-post"
@@ -57,7 +57,8 @@ export default function RecordAddForm({ recommendationId }: RecordAddFormProps) 
             id="district"
             label="자치구"
             required
-            placeholder="예: 서울특별시 강남구"
+            placeholder="예: 강남구"
+            //placeholder="예: 서울특별시 강남구"
             value={district}
             onValueChange={setDistrict}
           />

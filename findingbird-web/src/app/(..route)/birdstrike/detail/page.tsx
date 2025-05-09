@@ -11,9 +11,13 @@ export default async function BirdStrikeDetailPage({ searchParams }: { searchPar
   if (!data) return <div>데이터를 불러올 수 없습니다.</div>;
 
   return (
-    <main className="min-h-screen bg-gray-50 p-6">
-      <Header title="조류 충돌 신고 상세" link="/birdstrike" />
-      <article className="mx-auto max-w-3xl space-y-6 rounded-xl bg-white p-6 shadow">
+        <>
+          {/* 헤더를 최상단에 고정 */}
+          <Header title="조류 충돌 신고 상세" link="/birdstrike" />
+    
+          <main className="min-h-screen bg-white">
+            {/* main의 패딩 제거, article에 마진 주기 */}
+            <article className="mx-auto max-w-3xl space-y-6 rounded-xl bg-white p-6">
         {/* 제목 / 작성자 / 작성일 */}
         <div className="space-y-1">
           <h1 className="text-2xl font-bold text-gray-900">{data.title}</h1>
@@ -48,6 +52,7 @@ export default async function BirdStrikeDetailPage({ searchParams }: { searchPar
         </section>
       </article>
     </main>
+    </>
   );
 }
 

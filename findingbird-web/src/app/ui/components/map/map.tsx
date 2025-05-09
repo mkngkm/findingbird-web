@@ -152,9 +152,23 @@ birds.forEach((bird) => {
       <div id={mapId} className="absolute inset-0 w-full h-full z-0" />
       <button
   onClick={handleMoveToMyLocation}
-  className="absolute top-20 right-5 bg-white rounded-full shadow px-1 py-1 text-sm font-semibold z-[9999]"
+  className="
+        absolute 
+        top-4            /* 상단에서 1rem 떨어진 위치 */
+        left-1/2         /* 뷰포트 가로의 50% 지점 */
+        transform 
+        -translate-x-1/2 /* 버튼 너비의 절반만큼 왼쪽으로 이동 */
+        bg-white 
+        rounded-full 
+        shadow 
+        px-3 
+        py-1 
+        text-sm 
+        font-semibold 
+        z-[9999]
+      "
 >
-  내 위치
+  내 위치로 이동하기
 </button>
 
     </>

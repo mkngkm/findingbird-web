@@ -15,7 +15,7 @@ export default async function RecommendationPage({
   const goals = await fetchTodayGoals();
 
   return (
-    <main className="min-h-screen bg-gray-100 p-5 relative">
+    <main className="min-h-screen bg-gray-100 flex flex-col">
       <Header title="AI 추천 목표" link="/home" />
 
       <section className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -66,7 +66,7 @@ export default async function RecommendationPage({
       {/* 하단 중앙 플로팅 버튼 */}
       <Link
         href={`/recommendation/landing?district=${districtParam ?? ''}`}
-        className="fixed bottom-14 left-1/2 -translate-x-1/2 bg-birdGreen700 text-white rounded-2xl p-3 flex items-center justify-center shadow-lg hover:bg-birdGreen800 transition z-50"
+        className="absolute bottom-16 left-1/2 transform -translate-x-1/2 bg-birdGreen600 text-white font-semibold rounded-full px-6 py-3 shadow-lg"
         aria-label="AI 목표 생성"
       >
         AI 목표 추가

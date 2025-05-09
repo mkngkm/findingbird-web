@@ -38,7 +38,7 @@ export function FormImage({
           {label}
         </label>
       )}
-      <label htmlFor={id} className="flex flex-col items-center cursor-pointer">
+      <label htmlFor={id} className="flex flex-col items-center gap-2 cursor-pointer">
         <MdOutlineAddPhotoAlternate size={40} color="gray" />
         <span className="text-gray-500 text-sm">
           사진을 추가해주세요(최대 1장)
