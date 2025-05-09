@@ -36,19 +36,19 @@ export default function Collection() {
               <BirdCard bird={bird} />
             </DialogTrigger>
 
-            <DialogContent title={bird.commonName} description={bird.scientificName}>
+            <DialogContent title={bird.speciesName} description={bird.scientificName}>
               <div id="scrollableDiv" className="max-h-[54vh] overflow-y-auto pr-2">
                 <img
                   src={bird.imageUrl}
-                  alt={bird.commonName}
+                  alt={bird.speciesName}
                   className="mb-4 w-full rounded object-cover"
                 />
 
                 <h3 className="font-medium text-gray-700">형태특성</h3>
-                <p className="mb-4 text-gray-600">{bird.morphology}</p>
+                <p className="mb-4 text-gray-600">{bird.morphoTrait}</p>
 
                 <h3 className="font-medium text-gray-700">생태특성</h3>
-                <p className="text-gray-600">{bird.ecology}</p>
+                <p className="text-gray-600">{bird.ecoTrait}</p>
               </div>
 
               <DialogClose asChild>

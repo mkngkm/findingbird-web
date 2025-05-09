@@ -1,8 +1,11 @@
-export interface Bird {
-  id: number;
-  imageUrl: string;
-  commonName: string;
+export type Bird = {
+  id: string;
+  speciesName: string;
   scientificName: string;
-  morphology: string;
-  ecology: string;
-}
+  habitatType: string;
+  appearanceCount: number;
+  morphoTrait: string;
+  ecoTrait: string;
+  districts: string[];
+  imageUrl: string;
+};
