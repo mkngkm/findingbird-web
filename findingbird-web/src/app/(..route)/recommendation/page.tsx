@@ -73,7 +73,7 @@ export default async function RecommendationPage({
       {/* 하단 중앙 플로팅 버튼 */}
       <Link
         href={`/recommendation/landing?district=${districtParam ?? ''}`}
-        className="absolute bottom-16 left-1/2 transform -translate-x-1/2 bg-birdGreen600 text-white font-semibold rounded-full px-6 py-3 shadow-lg"
+        className="fixed bottom-16 left-1/2 transform -translate-x-1/2 bg-birdGreen600 text-white font-semibold rounded-full px-6 py-3 shadow-lg"
         aria-label="AI 목표 생성"
       >
         AI 목표 추가

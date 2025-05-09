@@ -28,7 +28,7 @@ export default function RootLayout({
   className={cn(
     globalFont.variable,
     'font-dung w-full max-w-[420px] min-h-screen bg-white relative',
-    'shadow-[0_0_5px_rgba(0,0,0,0.08)] rounded-xl overflow-hidden' // ✅ 미세 그림자
+    'shadow-[0_0_5px_rgba(0,0,0,0.08)] rounded-xl' // ✅ 미세 그림자
   )}
 >
 
